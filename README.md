@@ -1,12 +1,12 @@
 # Traffic Light
 
-Das ist das Grundgerüst für die zweite Übung.
+Das ist das Codetemplate für die zweite Übung in Programmierung 2.
 
-Ziel: Umsetzung des Observer Patterns und des Singelton Patterns
+Ziel: Umsetzung des Observer Patterns und des Singleton Patterns
 
 Folgende Schritte sind zu durchzuführen
 
-* Bauen Sie den Controller auf einen Singelton um
+* Bauen Sie den Controller auf einen Singleton um
 * Schreiben Sie das Interface Observer mit der Methode
     * update  
 * Implementieren Sie die Klasse Subject mit den Methoden
