@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TrafficLightGui extends JFrame implements ActionListener, Observer {
+public class TrafficLightGui extends JFrame implements ActionListener {
 
     public static final String ACTION_COMMAND_STOP = "stop";
 
@@ -25,26 +25,20 @@ public class TrafficLightGui extends JFrame implements ActionListener, Observer 
     public TrafficLightGui(TrafficLightCtrl ctrl){
         super(NAME_OF_THE_GAME);
         trafficLightCtrl = ctrl;
-        initLights();
+        initLights(ctrl);
         init();
     }
 
-    private void initLights() {
+    private void initLights(TrafficLightCtrl ctrl) {
         //TODO implement a part of the pattern here
         //create the TrafficLight
         green = new TrafficLight(Color.green);
+        ctrl.getGreenState().addObserver(green);
         yellow = new TrafficLight(Color.yellow);
+        ctrl.getYellowState().addObserver(yellow);
         red = new TrafficLight(Color.red);
-
+        ctrl.getRedState().addObserver(red);
         green.turnOn(true);
-
-        trafficLightCtrl.addObserver(new Observer() {
-            @Override
-            public void update(State state) {
-                changeLights(state.getColor());
-            }
-        });
-        //connect subject and observer
     }
 
     private void init() {
@@ -57,7 +51,6 @@ public class TrafficLightGui extends JFrame implements ActionListener, Observer 
         p1.add(red);
         p1.add(yellow);
         p1.add(green);
-
 
         JPanel p2 = new JPanel(new FlowLayout());
         p2.add(buttonStop);
@@ -79,34 +72,5 @@ public class TrafficLightGui extends JFrame implements ActionListener, Observer 
             trafficLightCtrl.stop();
         }
     }
-
-    @Override
-    public void update(State state) {
-        changeLights(state.getColor());
-    }
-
-    public void changeLights(String colour){
-        switch(colour){
-            case "green":
-                green.turnOn(true);
-                yellow.turnOn(false);
-                red.turnOn(false);
-                break;
-            case "yellow":
-                green.turnOn(false);
-                yellow.turnOn(true);
-                red.turnOn(false);
-                break;
-            case "red":
-                green.turnOn(false);
-                yellow.turnOn(false);
-                red.turnOn(true);
-                break;
-            default: break;
-        }
-    }
-
-    public boolean greenIsOn(){ return green.isOn; }
-    public boolean yellowIsOn(){ return yellow.isOn; }
-    public boolean redIsOn(){ return red.isOn; }
 }
+

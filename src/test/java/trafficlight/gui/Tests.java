@@ -1,13 +1,14 @@
+/*package trafficlight.gui;
+
 import org.junit.jupiter.api.Test;
 import trafficlight.ctrl.TrafficLightCtrl;
-import trafficlight.gui.TrafficLightGui;
 import trafficlight.states.State;
 
 import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Tests {
+public class TestUpdateFunction {
 
     State greenState;
     State yellowState;
@@ -70,3 +71,4 @@ public class Tests {
         assertFalse(gui.greenIsOn());
     }
 }
+*/
